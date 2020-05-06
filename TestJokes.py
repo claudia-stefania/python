@@ -31,10 +31,10 @@ class TestForJokes:
         if checker:
             print("All jokes have expected type: " + expected_type)
 
-    def verify_jokes_number(self, jokes_dictionary):
-        if len(jokes_dictionary) != 10:
-            return "Number of jokes is not 10!"
-        return "There are 10 jokes!"
+    def verify_jokes_number(self, jokes_dictionary, expected_jokes_number):
+        if len(jokes_dictionary) != expected_jokes_number:
+            return "Number of jokes is not {}!".format(expected_jokes_number)
+        return "There are {} jokes!".format(expected_jokes_number)
 
 
 # TestForJokes().verify_jokes_type("programming")
@@ -43,4 +43,4 @@ my_jokes = GetJoke().get_ten_jokes_about_programing()
 TestForJokes().verify_jokes_type(my_jokes, "programming")
 
 your_jokes = GetJoke().get_ten_jokes()
-print(TestForJokes().verify_jokes_number(my_jokes))
+print(TestForJokes().verify_jokes_number(my_jokes, 10))
