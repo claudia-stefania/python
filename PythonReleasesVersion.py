@@ -12,7 +12,8 @@ action = ActionChains(chromeDriver)
 downloadsMenu = chromeDriver.find_element_by_id("downloads")
 action.move_to_element(downloadsMenu).perform()
 
-allReleasesMenu = chromeDriver.find_element_by_xpath(".//*[@id=\"downloads\"]/ul/li[1]")
+# allReleasesMenu = chromeDriver.find_element_by_xpath(".//*[@id=\"downloads\"]/ul/li[1]")
+allReleasesMenu = chromeDriver.find_element_by_xpath(".//li[@id='downloads']/ul[@class='subnav menu']/li[@class='tier-2 element-1']")
 action.move_to_element(allReleasesMenu).perform()
 allReleasesMenu.click()
 
