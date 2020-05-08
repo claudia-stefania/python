@@ -37,7 +37,7 @@ def my_fibonacci(how_many_numbers):
     if how_many_numbers <= 0:
         print("Please enter a positive integer")
     elif how_many_numbers == 1:
-        print("Fibonacci sequence up to", how_many_numbers, ":")
+        print("Print ", how_many_numbers, "numbers from Fibonacci :")
         print(n1)
     else:
         print("Fibonacci sequence:")
@@ -50,10 +50,8 @@ def my_fibonacci(how_many_numbers):
             count += 1
 
 
-my_factorial(10000)
-
+my_factorial(1000)
 print("##################################")
-
 my_fibonacci(100)
 
 # say_whee()
