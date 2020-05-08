@@ -1,55 +1,65 @@
-from datetime import datetime
-import functools
-import time
+from Decorators import do_twice
+from Decorators import my_decorator
+from Decorators import timer
 
 
-def my_decorator(func):
-    def wrapper():
-        print("Something is happening before the function is called.")
-        func()
-        print("Something is happening after the function is called.")
-
-    return wrapper
+# @my_decorator
+@do_twice
+def say_whee():
+    print("Whee!")
 
 
-def not_during_the_night(func):
-    def wrapper():
-        if 7 <= datetime.now().hour < 22:
-            func()
-        else:
-            pass  # Hush, the neighbors are asleep
-
-    return wrapper
+@do_twice
+def greet(name):
+    print(f"Hello {name}")
 
 
-def do_twice(func):
-    @functools.wraps(func)
-    def wrapper_do_twice(*args, **kwargs):
-        func(*args, **kwargs)
-        return func(*args, **kwargs)
-
-    return wrapper_do_twice
+@do_twice
+def return_greeting(name):
+    print("Creating greeting")
+    return f"Hi {name}"
 
 
-def decorator_template(func):
-    @functools.wraps(func)
-    def wrapper_decorator(*args, **kwargs):
-        # Do something before
-        value = func(*args, **kwargs)
-        # Do something after
-        return value
-
-    return wrapper_decorator
+@timer
+def my_factorial(number):
+    factorial = 1
+    for i in range(1, number + 1):
+        factorial = factorial * i
+    print("The factorial of", number, "is", factorial)
 
 
-def timer(func):
-    """Print the runtime of the decorated function"""
-    @functools.wraps(func)
-    def wrapper_timer(*args, **kwargs):
-        start_time = time.perf_counter()    # 1
-        value = func(*args, **kwargs)
-        end_time = time.perf_counter()      # 2
-        run_time = end_time - start_time    # 3
-        print(f"Finished {func.__name__!r} in {run_time:.4f} secs")
-        return value
-    return wrapper_timer
+@timer
+def my_fibonacci(how_many_numbers):
+    n1, n2 = 0, 1
+    count = 0
+
+    # check if the number of terms is valid
+    if how_many_numbers <= 0:
+        print("Please enter a positive integer")
+    elif how_many_numbers == 1:
+        print("Fibonacci sequence up to", how_many_numbers, ":")
+        print(n1)
+    else:
+        print("Fibonacci sequence:")
+        while count < how_many_numbers:
+            print(n1)
+            nth = n1 + n2
+            # update values
+            n1 = n2
+            n2 = nth
+            count += 1
+
+
+my_factorial(10000)
+
+print("##################################")
+
+my_fibonacci(100)
+
+# say_whee()
+# greet("World")
+
+# return_greeting("Adam")
+# hi_adam = return_greeting("Adam")
+# print(hi_adam)
+# print(return_greeting.__name__)
