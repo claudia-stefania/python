@@ -76,7 +76,8 @@ def debug(func):
 
 # decorator with arguments
 # when a decorator uses arguments, you need to add an extra outer function
-def repeat(num_times):
+# default value for num_times is 2
+def repeat(_func=None, *, num_times=2):
     def decorator_repeat(func):
         @functools.wraps(func)
         def wrapper_repeat(*args, **kwargs):
@@ -86,4 +87,10 @@ def repeat(num_times):
 
         return wrapper_repeat
 
-    return decorator_repeat
+    # _func is None when repeat has been called with arguments.
+    # Return a decorator function that can read and return a function.
+    if _func is None:
+        return decorator_repeat
+    # repeat has been called without arguments. Apply the decorator to the function immediately.
+    else:
+        return decorator_repeat(_func)

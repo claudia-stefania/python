@@ -9,5 +9,5 @@ from decorators.DecoratorsOnMethods import return_greeting, my_fibonacci, my_fac
 # print("##################################")
 # my_fibonacci(100)
 
-# say_whee()
+say_whee()
 greet("World")

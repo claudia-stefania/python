@@ -3,13 +3,13 @@ from decorators.Decorators import do_twice, my_decorator, timer, repeat
 
 # nested decorators
 @my_decorator
-@do_twice
+@repeat
 def say_whee():
     print("Whee!")
 
 
 # @do_twice
-@repeat(num_times=7)
+@repeat(num_times=3)
 def greet(name):
     print(f"Hello {name}")
 
