@@ -1,15 +1,15 @@
-from Decorators import do_twice
-from Decorators import my_decorator
-from Decorators import timer
+from decorators.Decorators import do_twice, my_decorator, timer, repeat
 
 
-# @my_decorator
+# nested decorators
+@my_decorator
 @do_twice
 def say_whee():
     print("Whee!")
 
 
-@do_twice
+# @do_twice
+@repeat(num_times=7)
 def greet(name):
     print(f"Hello {name}")
 
@@ -18,12 +18,6 @@ def greet(name):
 def return_greeting(name):
     print("Creating greeting")
     return f"Hi {name}"
-
-
-# print(return_greeting("Adam"))
-# hi_adam = return_greeting("Adam")
-# print(hi_adam)
-# print(return_greeting.__name__)
 
 
 @timer
@@ -54,11 +48,3 @@ def my_fibonacci(how_many_numbers):
             n1 = n2
             n2 = nth
             count += 1
-
-
-my_factorial(100000)
-print("##################################")
-# my_fibonacci(100)
-
-# say_whee()
-# greet("World")
